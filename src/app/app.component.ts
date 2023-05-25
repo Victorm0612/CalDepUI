@@ -45,6 +45,22 @@ export class AppComponent implements OnInit {
       })
   }
 
+  downloadFile() {
+    const { n, min, max, d } = this.form.value;
+    const dzn = `n=${n}; Min=${min}; Max=${max}; D=${d}`;
+    let file = new Blob([dzn], {type: 'text/plain'});
+    let a = document.createElement("a"),
+            url = URL.createObjectURL(file);
+    a.href = url;
+    a.download = 'DatosCalDep.dzn';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function() {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }, 0);
+  }
+
   onSubmit() {
     const { n, min, max, d } = this.form.value;
     this.model = new MiniZinc.Model();

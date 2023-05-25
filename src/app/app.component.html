@@ -23,6 +23,7 @@
         </div>
         <label></label>
         <button class="btn" type="submit" [disabled]="!form.valid">Calcular Calendario</button>
+        <a class="download-file" [ngClass]="{ 'disabled': !form.valid }" href="#" (click)="downloadFile()">Descargar archivo .dzn</a>
       </form>
     </div>
   </section>
