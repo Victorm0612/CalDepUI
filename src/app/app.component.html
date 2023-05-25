@@ -1,6 +1,6 @@
 <section class="app">
   <header class="header">
-    <h1 class="title">Problema del torneo</h1>
+    <h1 class="title">Generador de Calendarios Deportivos</h1>
   </header>
   <section class="body-calendar">
     <div class="card">
@@ -24,6 +24,24 @@
         <label></label>
         <button class="btn" type="submit" [disabled]="!form.valid">Calcular Calendario</button>
       </form>
+    </div>
+  </section>
+  <section *ngIf="calendar.length" class="calendar-solution">
+    <h1 class="title">Calendario</h1>
+    <h2 class="subtitle">Costo mínimo logrado: {{cost}}</h2>
+    <div class="calendar-results">
+      <div class="calendar-key" *ngFor="let round of calendar; let i = index;">
+        <div class="calendar-titles">
+          <span class="calendar-local">Local</span>
+          <span class="calendar-date">Fecha {{i + 1}}</span>
+          <span class="calendar-visitante">Visitante</span>
+        </div>
+        <div class="calendar-teams" *ngFor="let team of round; let j = index;">
+          <span class="calendar-teams__left">Equipo {{team < 0 ? team*-1 : j+1}}</span>
+          <span class="calendar-teams__vs">VS</span>
+          <span class="calendar-teams__right">Equipo {{team < 0 ? j+1 : team}}</span>
+        </div>
+      </div>
     </div>
   </section>
 </section>
