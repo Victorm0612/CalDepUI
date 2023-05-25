@@ -27,7 +27,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/minizinc/dist",
+                "output": "./src/assets/minizinc/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -51,18 +56,21 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
-              "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
+              "buildOptimizer": false,
               "sourceMap": true,
+              "optimization": false,
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "cal-dep:build"
+          },
           "configurations": {
             "production": {
               "browserTarget": "cal-dep:build:production"
@@ -90,7 +98,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/minizinc/dist",
+                "output": "./src/assets/minizinc/"
+              }
             ],
             "styles": [
               "src/styles.scss"
