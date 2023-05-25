@@ -13,6 +13,7 @@ import { MinizincService } from './services';
 export class AppComponent implements OnInit {
   private readonly STATUS_DONE = 'OPTIMAL_SOLUTION';
   model!: MiniZinc.Model;
+  modelInfo: string = '';
   showCalendar = false;
   calendar: number[][] = [];
   cost!: number;
@@ -36,8 +37,7 @@ export class AppComponent implements OnInit {
       .subscribe({
         next: (model) => {
           console.log('Ready');
-          this.model = new MiniZinc.Model();
-          this.model.addFile('CalDep.mzn', model);
+          this.modelInfo = model;
         },
         error: (err) => {
           console.log(err);
@@ -47,6 +47,8 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     const { n, min, max, d } = this.form.value;
+    this.model = new MiniZinc.Model();
+    this.model.addFile('CalDep.mzn', this.modelInfo);
     const dzn = `n=${n}; Min=${min}; Max=${max}; D=${d}`;
     this.model.addDznString(dzn);
     const solve = this.model.solve({
@@ -65,6 +67,7 @@ export class AppComponent implements OnInit {
     solve.then(result => {
       if (result.status === this.STATUS_DONE) {
         this.showCalendar = true;
+        console.log(this.calendar);
       }
     });
   }
