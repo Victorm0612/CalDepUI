@@ -48,14 +48,14 @@ export class AppComponent implements OnInit {
   downloadFile() {
     const { n, min, max, d } = this.form.value;
     const dzn = `n=${n}; Min=${min}; Max=${max}; D=${d}`;
-    let file = new Blob([dzn], {type: 'text/plain'});
-    let a = document.createElement("a"),
-            url = URL.createObjectURL(file);
+    const file = new Blob([dzn], {type: 'text/plain'});
+    const a = document.createElement("a");
+    const url = URL.createObjectURL(file);
     a.href = url;
     a.download = 'DatosCalDep.dzn';
     document.body.appendChild(a);
     a.click();
-    setTimeout(function() {
+    setTimeout(() => {
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
     }, 0);
