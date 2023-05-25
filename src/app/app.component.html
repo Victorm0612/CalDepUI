@@ -37,10 +37,10 @@
           <span class="calendar-date">Fecha {{i + 1}}</span>
           <span class="calendar-visitante">Visitante</span>
         </div>
-        <div class="calendar-teams" *ngFor="let team of round; let j = index;">
-          <span class="calendar-teams__left">Equipo {{team < 0 ? team*-1 : j+1}}</span>
+        <div class="calendar-teams" *ngFor="let team of round | filterTeams; let j = index;">
+          <span class="calendar-teams__left">Equipo {{team.local}}</span>
           <span class="calendar-teams__vs">VS</span>
-          <span class="calendar-teams__right">Equipo {{team < 0 ? j+1 : team}}</span>
+          <span class="calendar-teams__right">Equipo {{team.visitante}}</span>
         </div>
       </div>
     </div>
