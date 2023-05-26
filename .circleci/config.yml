@@ -28,6 +28,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
+            - node_modules
             - dist
   deploy:
     working_directory: ~/cal-dep
@@ -36,7 +37,7 @@ jobs:
     steps:
       - run:
           name: Deploy to Netlify
-          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=dist      
+          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=dist
 workflows:
   ci:
     jobs:
