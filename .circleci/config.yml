@@ -30,6 +30,7 @@ jobs:
           root: .
           paths:
             - node_modules/.bin
+            - package-lock.json
             - dist
   deploy:
     working_directory: ~/cal-dep
