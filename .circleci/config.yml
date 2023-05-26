@@ -25,6 +25,7 @@ jobs:
           key: app-build-cache-{{ .Branch }}
           paths:
             - ./dist
+            - ./node_modules
       - persist_to_workspace:
           root: .
           paths:
