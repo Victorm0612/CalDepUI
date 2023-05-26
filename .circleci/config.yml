@@ -25,6 +25,10 @@ jobs:
           key: app-build-cache-{{ .Branch }}
           paths:
             - ./dist
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
   deploy:
     working_directory: ~/cal-dep
     docker:
